@@ -9,6 +9,7 @@ Integrated Delivery Model (IDM).
 | --- | --- | --- |
 | `meeting-prep/2026-07-30-fulton-hogan-cheat-sheet.html` | Dan's one-page reference for the 30 July 2026 meeting with Amanda Lawrey: acronym glossary, background on FH's digital programme, positioning anchors, questions to ask, and what not to say. | internal |
 | `assets/logo/` | Approved TACEDGE lockup, copied unmodified from the brand repository. | approved |
+| `assets/icon/` | Approved TACEDGE app-icon derivatives, used for the home-screen icon. Copied unmodified. | derived |
 | `assets/fonts/` | Self-hosted woff2 files that render the documents here. Not a font library. | see `assets/fonts/README.md` |
 
 Open the cheat sheet directly in a browser, or print it (the layout is set up

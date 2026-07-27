@@ -44,19 +44,32 @@ if (fonts === 0 || logos === 0) {
   process.exit(1);
 }
 
-if (/\.\.\//.test(html)) {
+// Home-screen icons. The single-file outputs carry them as data URIs; the
+// Pages site ships them as real files so the web manifest can point at them.
+let icons = 0;
+const standalone = html.replace(/href="\.\.\/(assets\/icon\/[^"]+\.png)"/g, (_, p) => {
+  icons += 1;
+  return `href="${dataUri(p, "image/png")}"`;
+});
+
+if (icons === 0) {
+  console.error("Expected home-screen icons to inline, found none.");
+  process.exit(1);
+}
+
+if (/\.\.\//.test(standalone)) {
   console.error("A relative reference survived inlining. The output would break when hosted.");
   process.exit(1);
 }
 
 mkdirSync(outDir, { recursive: true });
-writeFileSync(join(outDir, `${stem}.standalone.html`), html);
+writeFileSync(join(outDir, `${stem}.standalone.html`), standalone);
 
 // The hosted page supplies its own document skeleton, so strip ours and keep
 // the title, styles and content.
-const title = html.match(/<title>([\s\S]*?)<\/title>/)?.[1] ?? "";
-const style = html.match(/<style>[\s\S]*?<\/style>/)?.[0] ?? "";
-const body = html.match(/<body>([\s\S]*?)<\/body>/)?.[1]?.trim() ?? "";
+const title = standalone.match(/<title>([\s\S]*?)<\/title>/)?.[1] ?? "";
+const style = standalone.match(/<style>[\s\S]*?<\/style>/)?.[0] ?? "";
+const body = standalone.match(/<body>([\s\S]*?)<\/body>/)?.[1]?.trim() ?? "";
 
 if (!title || !style || !body) {
   console.error("Could not split the source into title, style and body.");
@@ -74,16 +87,47 @@ writeFileSync(
 // if this is ever meant to be found.
 const siteDir = join(root, "site");
 const noindex = '<meta name="robots" content="noindex, nofollow">';
-const sitePage = html.replace("<title>", `${noindex}\n<title>`);
+const manifestLink = '<link rel="manifest" href="site.webmanifest">';
+const sitePage = html
+  .replace(/href="\.\.\/assets\/icon\//g, 'href="')
+  .replace("<title>", `${noindex}\n${manifestLink}\n<title>`);
 
-if (!sitePage.includes(noindex)) {
-  console.error("Could not add the noindex directive to the hosted page.");
+if (!sitePage.includes(noindex) || !sitePage.includes(manifestLink) || /\.\.\//.test(sitePage)) {
+  console.error("Could not prepare the hosted page: noindex, manifest or icon paths are wrong.");
   process.exit(1);
 }
 
 mkdirSync(siteDir, { recursive: true });
 writeFileSync(join(siteDir, "index.html"), sitePage);
 writeFileSync(join(siteDir, "robots.txt"), "User-agent: *\nDisallow: /\n");
+
+// Added to a home screen the sheet opens standalone, named and iconed. The
+// icons are the approved TACEDGE app-icon derivatives, copied as supplied.
+for (const icon of ["icon-192.png", "icon-512.png", "apple-touch-icon.png"]) {
+  writeFileSync(join(siteDir, icon), readFileSync(join(root, "assets/icon", icon)));
+}
+
+writeFileSync(
+  join(siteDir, "site.webmanifest"),
+  JSON.stringify(
+    {
+      name: "Dan's Cheat Sheet · Fulton Hogan",
+      short_name: "FH Prep",
+      description: "Meeting prep for Fulton Hogan, 30 July 2026.",
+      start_url: "./",
+      scope: "./",
+      display: "standalone",
+      background_color: "#F7F5EC",
+      theme_color: "#112411",
+      icons: [
+        { src: "icon-192.png", sizes: "192x192", type: "image/png" },
+        { src: "icon-512.png", sizes: "512x512", type: "image/png" },
+      ],
+    },
+    null,
+    2
+  ) + "\n"
+);
 
 const kb = (dir, name) => Math.round(readFileSync(join(dir, name)).length / 1024);
 console.log(`Inlined ${fonts} fonts and ${logos} logo.`);
