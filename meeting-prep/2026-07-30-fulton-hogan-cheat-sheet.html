@@ -32,6 +32,10 @@
   --te-ui:'Be Vietnam Pro',system-ui,-apple-system,sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+/* The sheet commits to the brand paper: warm cream ground, forest headers.
+   There is no dark variant because the closed palette has no approved dark
+   card surface, and inventing one would breach the colour rules. */
+:root{background:var(--te-cream);color-scheme:light}
 body{background:var(--te-cream);font-family:var(--te-ui);color:var(--te-ink);max-width:900px;margin:0 auto;-webkit-font-smoothing:antialiased}
 
 /* header */
@@ -76,6 +80,19 @@ body{background:var(--te-cream);font-family:var(--te-ui);color:var(--te-ink);max
 
 /* footer */
 .ftr{background:var(--te-forest);color:var(--te-sage);padding:12px 24px;font-family:var(--te-mono);font-weight:500;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;display:flex;justify-content:space-between;gap:16px}
+
+/* Phone: single column, and copy sized to be read at arm's length rather
+   than scanned across a printed A4. */
+@media(max-width:600px){
+  .hdr{padding:16px;flex-direction:column;align-items:flex-start;gap:12px}
+  .htitle{text-align:left}
+  .section,.section:nth-child(even){border-right:none;padding:18px 16px}
+  .acro{gap:10px;flex-direction:column;padding:10px 0}
+  .acro .ac{min-width:0;font-size:12.5px}
+  .acro .def,.ccard,.anchor .a,.qrow p{font-size:14px}
+  .acro .def .note{font-size:13px}
+  .ftr{flex-direction:column;gap:6px;padding:14px 16px}
+}
 
 @media print{
   body{max-width:none}
