@@ -1,0 +1,53 @@
+# Publishes the meeting-prep sheet to GitHub Pages at
+# https://tacedge.github.io/Fulton-Hogan/
+#
+# The page is served unlisted: robots.txt and a noindex directive ask search
+# engines to stay away, and nothing links to it. That is not access control.
+# Anyone with the link can read it, and so can anyone browsing this repository.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [claude/fulton-hogan-idm-prep-940g87]
+    paths:
+      - "meeting-prep/**"
+      - "assets/**"
+      - "scripts/**"
+      - ".github/workflows/deploy-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build the page
+        run: node scripts/build-standalone.mjs
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

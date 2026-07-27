@@ -2,9 +2,10 @@
  * Inlines fonts and logo artwork into the meeting-prep sheet so it can be
  * hosted, emailed or opened with no sibling files.
  *
- * Two outputs, same source:
+ * Three outputs, same source:
  *   exports/<name>.standalone.html  full document, opens in any browser
  *   exports/<name>.artifact.html    head/body fragment for a hosted page
+ *   site/                           what GitHub Pages serves, build output
  *
  * Never hand-edit the exports. Change the source in meeting-prep/ or this
  * script, then run `node scripts/build-standalone.mjs`.
@@ -67,7 +68,25 @@ writeFileSync(
   `<title>${title}</title>\n${style}\n\n${body}\n`
 );
 
-const kb = (name) => Math.round(readFileSync(join(outDir, name)).length / 1024);
+// The Pages site. This is prep material on a public URL, so it is served
+// unlisted: search engines are asked not to index it, and nothing links to
+// it. Anyone given the link can still read it. Remove the robots directives
+// if this is ever meant to be found.
+const siteDir = join(root, "site");
+const noindex = '<meta name="robots" content="noindex, nofollow">';
+const sitePage = html.replace("<title>", `${noindex}\n<title>`);
+
+if (!sitePage.includes(noindex)) {
+  console.error("Could not add the noindex directive to the hosted page.");
+  process.exit(1);
+}
+
+mkdirSync(siteDir, { recursive: true });
+writeFileSync(join(siteDir, "index.html"), sitePage);
+writeFileSync(join(siteDir, "robots.txt"), "User-agent: *\nDisallow: /\n");
+
+const kb = (dir, name) => Math.round(readFileSync(join(dir, name)).length / 1024);
 console.log(`Inlined ${fonts} fonts and ${logos} logo.`);
-console.log(`  exports/${stem}.standalone.html  ${kb(`${stem}.standalone.html`)} KB`);
-console.log(`  exports/${stem}.artifact.html    ${kb(`${stem}.artifact.html`)} KB`);
+console.log(`  exports/${stem}.standalone.html  ${kb(outDir, `${stem}.standalone.html`)} KB`);
+console.log(`  exports/${stem}.artifact.html    ${kb(outDir, `${stem}.artifact.html`)} KB`);
+console.log(`  site/index.html                  ${kb(siteDir, "index.html")} KB  (noindex)`);

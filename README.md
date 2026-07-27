@@ -14,12 +14,21 @@ Integrated Delivery Model (IDM).
 Open the cheat sheet directly in a browser, or print it (the layout is set up
 for single-sided A4).
 
-## Internal only
+## Read this before adding anything
 
-The cheat sheet is prep material, not customer collateral. It names people,
-records what to avoid saying, and reflects positioning that has not been
-agreed with Fulton Hogan. It is not for distribution outside TACEDGE, and the
-footer says as much: keep this off the table.
+**This repository is public.** Everything committed here is readable by
+anyone, including Fulton Hogan. The cheat sheet is prep material, not
+customer collateral: it names people, characterises how a client will react,
+records what to avoid saying, and quotes internal pricing. None of it has
+been agreed with Fulton Hogan.
+
+The sheet is also published to
+<https://tacedge.github.io/Fulton-Hogan/>, served unlisted — `robots.txt`
+and a `noindex` directive keep it out of search results, and nothing links to
+it. That is obscurity, not access control.
+
+If any of this should not be public, the fix is to make the repository
+private, not to delete the file. Git history keeps what was pushed.
 
 ## Brand
 
