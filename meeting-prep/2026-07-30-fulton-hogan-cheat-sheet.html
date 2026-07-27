@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dan's Cheat Sheet · FH Meeting 30 Jul</title>
+<style>
+/* Fonts: Be Vietnam Pro (ui) and JetBrains Mono (utility labels), both Google
+   Fonts under SIL OFL 1.1. Self-hosted per TACEDGE typography tokens; never
+   loaded from a CDN. Play is not loaded because this sheet carries no display
+   type — it is a dense reference document, all body and utility roles. */
+@font-face{font-family:'Be Vietnam Pro';src:url('../assets/fonts/be-vietnam-pro-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Be Vietnam Pro';src:url('../assets/fonts/be-vietnam-pro-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Be Vietnam Pro';src:url('../assets/fonts/be-vietnam-pro-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('../assets/fonts/jetbrains-mono-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('../assets/fonts/jetbrains-mono-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+
+/* TACEDGE colour tokens — tokens/colors.json v1.0.0. Approved values only. */
+:root{
+  --te-forest:#112411;      /* primary-dark */
+  --te-olive:#6E7D5C;       /* utility-sage — secondary marks, process arrows */
+  --te-sage:#B2B594;        /* pale-sage — utility labels on dark */
+  --te-cream:#F7F5EC;       /* warm-cream — page ground */
+  --te-ink:#242A1F;         /* primary-text */
+  --te-ink-40:#646A5A;      /* muted-text — utility labels on light */
+  --te-tint:#EFF1E4;        /* quiet-tint */
+  --te-rule:#CBD2C9;        /* divider */
+  --te-line:#E7E2D6;        /* border */
+  --te-card:#FFFFFF;        /* card-surface */
+  --te-brick:#9E3B2E;       /* error — prohibition marker, per do/don't precedent */
+  --te-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;
+  --te-ui:'Be Vietnam Pro',system-ui,-apple-system,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--te-cream);font-family:var(--te-ui);color:var(--te-ink);max-width:900px;margin:0 auto;-webkit-font-smoothing:antialiased}
+
+/* header */
+.hdr{background:var(--te-forest);color:var(--te-cream);padding:18px 24px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.hdr img{height:24px;width:auto;display:block}
+.htitle{font-family:var(--te-mono);font-weight:500;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--te-sage);text-align:right;line-height:1.6}
+
+/* sections */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.section{padding:20px;border-bottom:1px solid var(--te-rule);border-right:1px solid var(--te-rule)}
+.section:nth-child(even){border-right:none}
+.section.full{grid-column:1/-1;border-right:none}
+.sk{font-family:var(--te-mono);font-weight:500;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--te-ink-40);margin-bottom:14px;padding-bottom:7px;border-bottom:1.5px solid var(--te-forest)}
+
+/* acronym rows */
+.acro{display:flex;gap:12px;padding:7px 0;border-bottom:1px solid var(--te-tint);align-items:flex-start}
+.acro:last-child{border-bottom:none}
+.acro .ac{font-family:var(--te-mono);font-size:12px;font-weight:500;letter-spacing:.02em;color:var(--te-forest);min-width:70px;flex-shrink:0;padding-top:1px}
+.acro .def{font-size:12.5px;line-height:1.55}
+.acro .def b{color:var(--te-forest);font-weight:600}
+.acro .def .note{font-size:11.5px;line-height:1.5;color:var(--te-ink-40);margin-top:3px}
+
+/* context cards */
+.ccard{background:var(--te-card);border:1px solid var(--te-line);border-left:3px solid var(--te-olive);border-radius:12px;padding:12px 14px;margin-bottom:8px;font-size:12.5px;line-height:1.55}
+.ccard:last-child{margin-bottom:0}
+.ccard b{color:var(--te-forest);font-weight:600}
+.ccard .warn{color:var(--te-brick);font-weight:600}
+
+/* positioning anchors */
+.anchor{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--te-tint);align-items:flex-start}
+.anchor:last-child{border-bottom:none}
+.anchor .q{font-family:var(--te-mono);font-size:11px;color:var(--te-olive);min-width:20px;padding-top:2px}
+.anchor .a{font-size:12.5px;line-height:1.55}
+.anchor .a b{color:var(--te-forest);font-weight:600}
+
+/* questions */
+.qrow{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--te-tint);align-items:flex-start}
+.qrow:last-child{border-bottom:none}
+.qrow .n{font-family:var(--te-mono);font-weight:500;font-size:11px;color:var(--te-ink-40);min-width:22px;padding-top:1px}
+.qrow p{font-size:12.5px;font-weight:600;color:var(--te-forest);line-height:1.5}
+
+/* footer */
+.ftr{background:var(--te-forest);color:var(--te-sage);padding:12px 24px;font-family:var(--te-mono);font-weight:500;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;display:flex;justify-content:space-between;gap:16px}
+
+@media print{
+  body{max-width:none}
+  .section{break-inside:avoid}
+  .ccard{box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <img src="../assets/logo/tacedge-lockup-cream.svg" alt="TACEDGE">
+  <div class="htitle">Meeting prep · Fulton Hogan<br>Amanda Lawrey · 30 July 2026</div>
+</div>
+
+<div class="grid">
+
+  <!-- ACRONYMS: NZTA / IDM world -->
+  <div class="section">
+    <div class="sk">The NZTA / IDM world</div>
+
+    <div class="acro"><div class="ac">NZTA</div><div class="def"><b>NZ Transport Agency Waka Kotahi</b> — the client. Owns the state highway network, now drives the asset management strategy directly under IDM. Also called "the Principal" in contract language.<div class="note">Waka Kotahi is used equally. Both are fine.</div></div></div>
+
+    <div class="acro"><div class="ac">IDM</div><div class="def"><b>Integrated Delivery Model</b> — the new NZTA operating model from May 2026. NZTA owns asset management; contractors deliver the work. Replaces the old NOC model.<div class="note">IDM = the model. IDC = the specific contract.</div></div></div>
+
+    <div class="acro"><div class="ac">IDC</div><div class="def"><b>Integrated Delivery Contract</b> — the physical contract. FH holds 7 of the 17 IDCs nationwide, 10-year terms. The largest single holder of IDM delivery risk in NZ.</div></div>
+
+    <div class="acro"><div class="ac">NOC</div><div class="def"><b>Network Outcomes Contract</b> — what IDC replaced. The old model where contractors had more autonomy over asset management. Gone from May 2026.<div class="note">FH has been here before — the NOC was their world for years.</div></div></div>
+
+    <div class="acro"><div class="ac">AFWP</div><div class="def"><b>Annual Forward Works Programme</b> — the baseline programme of work on a network for the season. What TacEdge tracks delivery against.<div class="note">Produced by NZTA under IDM; contractor delivers to it.</div></div></div>
+
+    <div class="acro"><div class="ac">MSQA</div><div class="def"><b>Management, Surveillance &amp; Quality Assurance</b> — professional services providers who ride alongside the IDC contractor, checking quality on NZTA's behalf. Third party in the room.<div class="note">Not FH. They are NZTA's eyes on FH.</div></div></div>
+
+    <div class="acro"><div class="ac">Directory<br>supplier</div><div class="def"><b>The contestable pool</b> — pre-qualified suppliers who compete for up to 20% of the work on each IDC network. FH coordinates with them; they don't report to FH.<div class="note">Multi-party coordination problem. TacEdge's turf.</div></div></div>
+
+    <div class="acro"><div class="ac">SH</div><div class="def"><b>State Highway</b> — e.g. SH73 Arthur's Pass, SH6 West Coast. NZTA owns these. Local roads are the council's problem.<div class="note">IDC covers state highways only.</div></div></div>
+  </div>
+
+  <!-- ACRONYMS: site / field world -->
+  <div class="section">
+    <div class="sk">The site / field world</div>
+
+    <div class="acro"><div class="ac">STMS</div><div class="def"><b>Site Traffic Management Specialist</b> — the certified person responsible for TM at a worksite. Required on site before traffic management can operate. Gated competency — you can't run a closure without one.<div class="note">STMS-U = urban (higher speed); STMS-NP = non-primary. Different licences.</div></div></div>
+
+    <div class="acro"><div class="ac">TMO</div><div class="def"><b>Traffic Management Operative</b> — previously called Traffic Controller (TC). The person on the cones/paddle. Certified, not the same as STMS.</div></div>
+
+    <div class="acro"><div class="ac">TMP</div><div class="def"><b>Traffic Management Plan</b> — the approved plan for how traffic is managed at a worksite. Must be STMS-drafted, approved before work starts. Every work zone has one.<div class="note">TMP expiry is an operational risk TacEdge tracks.</div></div></div>
+
+    <div class="acro"><div class="ac">CoPTTM</div><div class="def"><b>Code of Practice for Temporary Traffic Management</b> — the national rulebook all TMPs must comply with. NZTA document.<div class="note">Pronounced "cop-tem." Everyone in the room will know it.</div></div></div>
+
+    <div class="acro"><div class="ac">TTM</div><div class="def"><b>Temporary Traffic Management</b> — the broader activity: cones, signs, stop/go, closures. TMP is the plan; TTM is the work.</div></div>
+
+    <div class="acro"><div class="ac">JSA / SWMS</div><div class="def"><b>Job Safety Analysis / Safe Work Method Statement</b> — the site safety documents crews sign on to each day. Gate for starting work in TacEdge Geotech; same principle applies here.</div></div>
+
+    <div class="acro"><div class="ac">Maximo</div><div class="def"><b>IBM's asset management platform</b> — FH's system of record for work orders, assets and maintenance history. The source TacEdge reads for programme state.<div class="note">Do not suggest replacing it. "Reads from Maximo" is the line.</div></div></div>
+
+    <div class="acro"><div class="ac">M-Field</div><div class="def"><b>Fulton Hogan's mobile field app</b> — built in-house, used for plant prestarts and field reporting. One of Amanda's "one app, one task" apps.<div class="note">Same caution: don't replace it. TacEdge sits above it.</div></div></div>
+
+    <div class="acro"><div class="ac">ArcGIS</div><div class="def"><b>Esri's GIS platform</b> — FH's spatial/asset layer. Where network assets live geographically. TacEdge overlays on top of it, reads from it.</div></div>
+
+    <div class="acro"><div class="ac">SITREP</div><div class="def"><b>Situation Report</b> — the formal update during or after an event. What TacEdge drafts and the controller approves before it goes to NZTA.<div class="note">Military origin. Emergency managers use it daily.</div></div></div>
+  </div>
+
+  <!-- AMANDA / FH CONTEXT -->
+  <div class="section full">
+    <div class="sk">Who you're meeting · things to know about Amanda Lawrey</div>
+    <div class="grid" style="gap:8px">
+      <div>
+        <div class="ccard">Led FH's in-house digital programme from 10 iPads in 2013 to <b>30+ custom apps built on Salesforce</b>. Apple made FH a global case study. She will not be impressed by digitisation pitches — she solved that a decade ago.</div>
+        <div class="ccard">Her philosophy: <b>"one app, one task"</b> — each app does one job, beautifully. She will judge your UX in the first 30 seconds. The demo is as important as the conversation.</div>
+        <div class="ccard"><span class="warn">Likely question: "Why wouldn't we build this ourselves?"</span><br>Answer: a multi-party coordination layer <b>cannot live inside one party's Salesforce org</b>. NZTA and directory suppliers will never log into FH's system as their shared source of truth. Neutral ground is a structural requirement, not a vendor preference.</div>
+      </div>
+      <div>
+        <div class="ccard">FH holds <b>7 of 17 IDC networks</b> — live since 1 May 2026, so she's roughly 12 weeks into mobilisation when you sit down. The problems are fresh and real, not theoretical.</div>
+        <div class="ccard">The introduction came through <b>One NZ (Nathan Daly)</b>. Amanda knows this is partly a connectivity conversation. Don't pretend otherwise — own it and show why sat-native coordination is different from every other tool she's seen.</div>
+        <div class="ccard">FH's existing stack (Maximo, ArcGIS, M-Field, Salesforce apps) is <b>excellent at single-party answers</b>. The gap is the multi-party picture — and under IDM, that gap is now a contractual accountability, not an inconvenience.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POSITIONING ANCHORS -->
+  <div class="section full">
+    <div class="sk">Your positioning anchors · lines that need to land</div>
+    <div class="grid" style="gap:0">
+      <div>
+        <div class="anchor"><div class="q">→</div><div class="a"><b>"The coordination layer, not app number 31."</b> TacEdge sits above the stack, reads from it, replaces nothing.</div></div>
+        <div class="anchor"><div class="q">→</div><div class="a"><b>"Thin to adopt, deep in trust."</b> Thin is the deployment story — no rip-and-replace, no migration. Trust and intelligence are the moat once you're in.</div></div>
+        <div class="anchor"><div class="q">→</div><div class="a"><b>"The network manager's 6am question, answered."</b> Not where are the trucks — what needs me today, and what happens if I don't act.</div></div>
+        <div class="anchor"><div class="q">→</div><div class="a"><b>"AI proposes, the controller commands, then it commits."</b> The agent prices the options. A person decides. This is the only version emergency-response culture accepts.</div></div>
+      </div>
+      <div>
+        <div class="anchor"><div class="q">→</div><div class="a"><b>"Shows NZTA a managed network, not a surprised one."</b> Under IDM, demonstrable performance shapes future work volumes. TacEdge is what makes that performance visible to the client.</div></div>
+        <div class="anchor"><div class="q">→</div><div class="a"><b>"Coordination that keeps working when towers don't."</b> ~40% of NZ has no cell coverage. The moment coordination matters most — the storm — is when terrestrial networks fail. Sat-native is the architecture.</div></div>
+        <div class="anchor"><div class="q">→</div><div class="a"><b>On pricing/integration if asked:</b> pilot is zero or near-zero cost; integration scope is exactly what a pilot works out. Don't quote geotech tiers. Don't promise live Maximo APIs — that's pilot content.</div></div>
+        <div class="anchor"><div class="q">→</div><div class="a"><b>On the origin story, use it:</b> Mike planned the Whakaari response, Dan flew the helicopters. Both hit the same coordination fog from opposite ends. You're field people who built software, not the reverse. 60 seconds, once.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUESTIONS TO ASK -->
+  <div class="section">
+    <div class="sk">Questions to ask Amanda</div>
+    <div class="qrow"><div class="n">01</div><p>Where does multi-party coordination actually break under IDM mobilisation — what does a bad day look like operationally?</p></div>
+    <div class="qrow"><div class="n">02</div><p>What happened, operationally, in the last significant storm response? How was the picture assembled?</p></div>
+    <div class="qrow"><div class="n">03</div><p>How does NZTA currently get visibility of network status and response progress during an event?</p></div>
+    <div class="qrow"><div class="n">04</div><p>Is there a network where connectivity bites hardest — where sat would change the answer?</p></div>
+    <div class="qrow"><div class="n">05</div><p>Is one network worth validating together — a small pilot before broad rollout?</p></div>
+  </div>
+
+  <!-- THINGS NOT TO SAY -->
+  <div class="section">
+    <div class="sk">What not to say</div>
+    <div class="ccard"><span class="warn">Don't say "digitise your field data."</span> She solved that in 2013. The Hunter Civil framing ("field data becomes project overhead") is wrong for this room.</div>
+    <div class="ccard"><span class="warn">Don't quote geotech pricing</span> ($1,500/month tiers). This is a national civil contractor. Commercial model is for after the pilot.</div>
+    <div class="ccard"><span class="warn">Don't imply live Maximo/ArcGIS integrations are built.</span> Say clearly: pilot phase one proves the picture's value, phase two wires the APIs that earn it.</div>
+    <div class="ccard"><span class="warn">Don't let it become a build-vs-buy debate.</span> If it goes there, use the neutral-ground answer and move on. Don't linger. She'll respect a clean answer over a drawn-out argument.</div>
+    <div class="ccard"><span class="warn">Don't make commitments.</span> This is a scoping conversation. Observations, questions, and a small pilot ask is the right scope. Jonny, Mike and the DT resolution all come before any dev spend.</div>
+  </div>
+
+</div>
+
+<div class="ftr"><span>TACEDGE · Dan's prep · Fulton Hogan 30 July 2026</span><span>Keep this off the table</span></div>
+
+</body>
+</html>
