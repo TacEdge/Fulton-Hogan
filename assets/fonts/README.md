@@ -8,10 +8,9 @@ are not a font library and must not be redistributed as brand assets.
 | Be Vietnam Pro | Vietanh Nguyen et al. | Google Fonts | SIL OFL 1.1 |
 | JetBrains Mono | JetBrains | Google Fonts | SIL OFL 1.1 |
 
-Only the weights actually used are kept here: Be Vietnam Pro 400/500/600 and
-JetBrains Mono 400/500. Play, the TACEDGE display face, is not included
-because nothing in this repository sets display type yet. Add it from the
-brand repository if that changes.
+Only the weights actually used are kept here: Be Vietnam Pro 400/500/600,
+JetBrains Mono 400/500, and Play 700. Play (SIL OFL 1.1, Google Fonts) was
+added from the brand repository when the one-pager introduced display type.
 
 Self-hosting is deliberate. TACEDGE typography tokens require woff2 to be
 served from the property itself, never from a CDN.

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<title>TACEDGE · Fulton Hogan · One-pager · 30 July 2026</title>
+<!--
+  Leave-behind for the 30 July 2026 meeting with Fulton Hogan. Unlike the cheat
+  sheet, this document is designed to be handed over: everything on it is
+  customer-safe. No pricing, no internal characterisations, no claim beyond
+  production on anchoring and drilling in New Zealand and Samoa, and no
+  suggestion that any integration is built.
+
+  Brand per TacEdge/Brand-Identity-and-Guidelines: colours from tokens/colors.json
+  only, Play display, Be Vietnam Pro body, JetBrains Mono utility, NZ spelling,
+  no em dashes. Single-sided A4. Print with background graphics on.
+-->
+<style>
+  @font-face { font-family: "Play"; src: url("../assets/fonts/play-700.woff2") format("woff2"); font-weight: 700; }
+  @font-face { font-family: "Be Vietnam Pro"; src: url("../assets/fonts/be-vietnam-pro-400.woff2") format("woff2"); font-weight: 400; }
+  @font-face { font-family: "Be Vietnam Pro"; src: url("../assets/fonts/be-vietnam-pro-500.woff2") format("woff2"); font-weight: 500; }
+  @font-face { font-family: "Be Vietnam Pro"; src: url("../assets/fonts/be-vietnam-pro-600.woff2") format("woff2"); font-weight: 600; }
+  @font-face { font-family: "JetBrains Mono"; src: url("../assets/fonts/jetbrains-mono-400.woff2") format("woff2"); font-weight: 400; }
+  @font-face { font-family: "JetBrains Mono"; src: url("../assets/fonts/jetbrains-mono-500.woff2") format("woff2"); font-weight: 500; }
+
+  :root {
+    --forest: #112411;
+    --olive: #6e7d5c;
+    --sage: #b2b594;
+    --sage-tint: #e6ebd9;
+    --cream: #f7f5ec;
+    --card: #ffffff;
+    --tint: #eff1e4;
+    --ink: #242a1f;
+    --ink-60: #5b6253;
+    --ink-40: #646a5a;
+    --line: #e7e2d6;
+    --line-2: #d9d3c4;
+    --cream-line: rgba(247, 245, 236, 0.16);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: A4; margin: 0; }
+
+  html, body { width: 210mm; height: 297mm; }
+  body {
+    font-family: "Be Vietnam Pro", system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mono {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* ---- Header band ---- */
+  .band {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 9mm 14mm 8mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .band img { height: 8.4mm; display: block; }
+  .band .mono { font-size: 7.6pt; color: var(--sage); }
+
+  /* ---- Page body ---- */
+  .page {
+    flex: 1;
+    padding: 9mm 14mm 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero { display: flex; align-items: baseline; gap: 6mm; padding-bottom: 5.5mm; border-bottom: 1px solid var(--line-2); }
+  .hero h1 {
+    font-family: "Play", sans-serif;
+    font-weight: 700;
+    font-size: 27pt;
+    letter-spacing: 0.005em;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .hero p { font-size: 10pt; line-height: 1.5; color: var(--ink-60); max-width: 96mm; }
+
+  /* ---- Sections ---- */
+  .sections { padding-top: 5.5mm; display: flex; flex-direction: column; gap: 4.6mm; }
+  .section { display: grid; grid-template-columns: 9mm 1fr; gap: 4.5mm; }
+  .section .num {
+    font-family: "Play", sans-serif;
+    font-weight: 700;
+    font-size: 13pt;
+    color: var(--olive);
+    line-height: 1;
+    padding-top: 0.4mm;
+  }
+  .section h2 {
+    font-family: "Play", sans-serif;
+    font-weight: 700;
+    font-size: 12pt;
+    letter-spacing: 0.01em;
+    margin-bottom: 1.6mm;
+  }
+  .section p { font-size: 9.4pt; line-height: 1.55; color: var(--ink-60); }
+  .section p strong { color: var(--ink); font-weight: 600; }
+  .section p + p { margin-top: 1.6mm; }
+
+  .spine {
+    display: inline-block;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+    font-size: 8.6pt;
+    letter-spacing: 0.1em;
+    color: var(--forest);
+    background: var(--tint);
+    border: 1px solid var(--line-2);
+    border-radius: 3mm;
+    padding: 0.8mm 3mm;
+    margin: 1.8mm 0 0;
+  }
+
+  /* ---- Bottom row ---- */
+  .bottom { display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 5mm; margin-top: 5.2mm; }
+
+  .questions {
+    background: var(--sage-tint);
+    border-radius: 4mm;
+    padding: 4.6mm 5.4mm 4.8mm;
+  }
+  .questions .mono, .next .mono { font-size: 7.4pt; color: var(--ink-40); display: block; margin-bottom: 2.6mm; }
+  .questions ol { list-style: none; display: flex; flex-direction: column; gap: 2.2mm; }
+  .questions li { display: grid; grid-template-columns: 6.5mm 1fr; gap: 2mm; font-size: 9pt; line-height: 1.45; color: var(--ink); }
+  .questions li .qn { font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 8pt; color: var(--olive); padding-top: 0.3mm; }
+
+  .next {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4mm;
+    padding: 4.6mm 5.4mm 4.8mm;
+    display: flex;
+    flex-direction: column;
+  }
+  .next h3 { font-family: "Play", sans-serif; font-weight: 700; font-size: 11.5pt; margin-bottom: 1.8mm; }
+  .next p { font-size: 9pt; line-height: 1.5; color: var(--ink-60); }
+  .next p + p { margin-top: 1.8mm; }
+  .next .quiet { margin-top: auto; padding-top: 2.6mm; border-top: 1px solid var(--line); font-size: 8pt; color: var(--ink-40); }
+
+  /* ---- Footer ---- */
+  .footer {
+    margin-top: auto;
+    padding: 3.6mm 14mm 6mm;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-top: 1px solid var(--line-2);
+  }
+  .footer .mono { font-size: 7.2pt; color: var(--ink-40); letter-spacing: 0.14em; }
+</style>
+</head>
+<body>
+
+<header class="band">
+  <img src="../assets/logo/tacedge-lockup-cream.svg" alt="TACEDGE">
+  <span class="mono">Fulton Hogan &middot; 30 July 2026</span>
+</header>
+
+<main class="page">
+  <div class="hero">
+    <h1>Shared Clarity.</h1>
+    <p>TACEDGE builds field coordination software for hard ground and hard places. We are field people who built software, not the reverse.</p>
+  </div>
+
+  <div class="sections">
+    <section class="section">
+      <span class="num">01</span>
+      <div>
+        <h2>Where we come from</h2>
+        <p>Our backgrounds are military and aviation. Mike planned the Whakaari response; Dan flew the helicopters. From opposite ends of the same operation we hit the same problem: capable people, good systems, and no shared picture of the work as it happened. TACEDGE exists to close that gap.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <span class="num">02</span>
+      <div>
+        <h2>What we have built</h2>
+        <p>TACEDGE Ground Engineering runs the delivery workflow for anchoring and drilling. It is <strong>in production with crews in New Zealand and Samoa today</strong>: work configured before the crew mobilises, captured once at the point of work, confirmed as engineering evidence worth signing against. Our ambition is a world-class ground engineering delivery product built on one operational habit: the field is the source of truth.</p>
+        <span class="spine">Configure &middot; Capture &middot; Confirm</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <span class="num">03</span>
+      <div>
+        <h2>What we would like to explore with Fulton Hogan</h2>
+        <p>Under the Integrated Delivery Model a network is delivered by many parties: Fulton Hogan, NZTA, MSQA providers, directory suppliers. The systems you run are excellent at single-party answers. The strain is the shared, multi-party picture, on networks where roughly 40 percent of the country has no cellular coverage and the picture matters most exactly when weather takes the towers down.</p>
+        <p>We want to explore a <strong>thin coordination layer above the systems you already run</strong>, replacing none of them, satellite-enabled through One NZ so it keeps working when terrestrial networks do not. We are not here to pitch a product. We would rather understand how coordination actually strains on your networks, and test whether this is worth building with you.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="bottom">
+    <div class="questions">
+      <span class="mono">The questions we are bringing</span>
+      <ol>
+        <li><span class="qn">01</span><span>Where does multi-party coordination strain hardest under IDM mobilisation? What does a bad day look like operationally?</span></li>
+        <li><span class="qn">02</span><span>In the last significant storm response, how was the operational picture actually assembled?</span></li>
+        <li><span class="qn">03</span><span>How does NZTA get visibility of network status and response progress during an event today?</span></li>
+        <li><span class="qn">04</span><span>Where does connectivity bite hardest, and on which network would satellite change the answer?</span></li>
+      </ol>
+    </div>
+
+    <div class="next">
+      <span class="mono">The right next step</span>
+      <h3>One network, validated together</h3>
+      <p>If this is worth pursuing, the next step is small and real: pick one network and prove the shared picture is worth having. Integration with your systems comes only after the picture earns it.</p>
+      <p class="quiet">Prepared for discussion. Not a proposal, and no commitment is implied on either side.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <span class="mono">TACEDGE Limited</span>
+  <span class="mono">mike@tacedge.co.nz</span>
+</footer>
+
+</body>
+</html>

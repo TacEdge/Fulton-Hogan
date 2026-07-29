@@ -8,6 +8,7 @@ Integrated Delivery Model (IDM).
 | Path | What it is | Status |
 | --- | --- | --- |
 | `meeting-prep/2026-07-30-fulton-hogan-cheat-sheet.html` | Dan's one-page reference for the 30 July 2026 meeting with Amanda Lawrey: acronym glossary, background on FH's digital programme, positioning anchors, questions to ask, and what not to say. | internal |
+| `meeting-prep/2026-07-30-fulton-hogan-one-pager.html` (+ `.pdf`) | The leave-behind for the same meeting. Unlike the cheat sheet this is designed to be handed over: customer-safe throughout, no pricing, claims held to production on anchoring and drilling in NZ and Samoa, no integration implied. The PDF is rendered from the HTML (Chromium, A4, background graphics on). | leave-behind |
 | `assets/logo/` | Approved TACEDGE lockup, copied unmodified from the brand repository. | approved |
 | `assets/fonts/` | Self-hosted woff2 files that render the documents here. Not a font library. | see `assets/fonts/README.md` |
 
