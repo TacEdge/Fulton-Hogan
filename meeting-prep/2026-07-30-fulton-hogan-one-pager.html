@@ -91,7 +91,7 @@
   .hero p { font-size: 10pt; line-height: 1.5; color: var(--ink-60); max-width: 96mm; }
 
   /* ---- Sections ---- */
-  .sections { padding-top: 5.5mm; display: flex; flex-direction: column; gap: 4.6mm; }
+  .sections { padding-top: 5mm; display: flex; flex-direction: column; gap: 4mm; }
   .section { display: grid; grid-template-columns: 9mm 1fr; gap: 4.5mm; }
   .section .num {
     font-family: "Play", sans-serif;
@@ -112,22 +112,47 @@
   .section p strong { color: var(--ink); font-weight: 600; }
   .section p + p { margin-top: 1.6mm; }
 
-  .spine {
-    display: inline-block;
-    font-family: "JetBrains Mono", monospace;
-    font-weight: 500;
-    font-size: 8.6pt;
-    letter-spacing: 0.1em;
-    color: var(--forest);
+  /* The workflow spine: three stages, never four. Compound sits beneath it as
+     a layer across the workflow, styled provisional because it is roadmap. */
+  .flow { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2.4mm; margin-top: 2.4mm; }
+  .step {
     background: var(--tint);
     border: 1px solid var(--line-2);
-    border-radius: 3mm;
-    padding: 0.8mm 3mm;
-    margin: 1.8mm 0 0;
+    border-radius: 2.5mm;
+    padding: 2.2mm 2.8mm 2.4mm;
   }
+  .step .stage {
+    display: block;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+    font-size: 8.2pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--forest);
+    margin-bottom: 1mm;
+  }
+  .step small { font-size: 8.2pt; line-height: 1.45; color: var(--ink-60); display: block; }
+  .compound {
+    margin-top: 2.4mm;
+    background: var(--sage-tint);
+    border: 1px dashed var(--olive);
+    border-radius: 2.5mm;
+    padding: 2.2mm 2.8mm 2.4mm;
+  }
+  .compound .stage {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+    font-size: 8.2pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--forest);
+    margin-right: 1.6mm;
+  }
+  .compound small { font-size: 8.2pt; line-height: 1.45; color: var(--ink-60); }
+  .fn { font-size: 7.6pt; color: var(--ink-40); margin-top: 1.4mm; }
 
   /* ---- Bottom row ---- */
-  .bottom { display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 5mm; margin-top: 5.2mm; }
+  .bottom { display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 5mm; margin-top: 4.4mm; }
 
   .questions {
     background: var(--sage-tint);
@@ -190,8 +215,14 @@
       <span class="num">02</span>
       <div>
         <h2>What we have built</h2>
-        <p>TACEDGE Ground Engineering runs the delivery workflow for anchoring and drilling. It is <strong>in production with crews in New Zealand and Samoa today</strong>: work configured before the crew mobilises, captured once at the point of work, confirmed as engineering evidence worth signing against. Our ambition is a world-class ground engineering delivery product built on one operational habit: the field is the source of truth.</p>
-        <span class="spine">Configure &middot; Capture &middot; Confirm</span>
+        <p>TACEDGE Ground Engineering runs the delivery workflow for anchoring and drilling. It is <strong>in production with crews in New Zealand and Samoa today</strong>. Our ambition is a world-class ground engineering delivery product built on one operational habit: the field is the source of truth.</p>
+        <div class="flow">
+          <div class="step"><span class="stage">Configure</span><small>The job set up right before the crew mobilises.</small></div>
+          <div class="step"><span class="stage">Capture</span><small>Field data recorded once, at the point of work.</small></div>
+          <div class="step"><span class="stage">Confirm</span><small>Verified into evidence worth signing against.</small></div>
+        </div>
+        <div class="compound"><span class="stage">Compound&thinsp;*</span><small>An intelligent agent working across the workflow: every completed project enriches the next, so recommendations sharpen as delivery data compounds from job to job.</small></div>
+        <p class="fn">* Roadmap capability, in development for V2. Not in production today.</p>
       </div>
     </section>
 
