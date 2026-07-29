@@ -63,7 +63,7 @@
   .band {
     background: var(--forest);
     color: var(--cream);
-    padding: 9mm 14mm 8mm;
+    padding: 7mm 14mm 6mm;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -74,12 +74,12 @@
   /* ---- Page body ---- */
   .page {
     flex: 1;
-    padding: 9mm 14mm 0;
+    padding: 6.6mm 14mm 0;
     display: flex;
     flex-direction: column;
   }
 
-  .hero { display: flex; align-items: baseline; gap: 6mm; padding-bottom: 5.5mm; border-bottom: 1px solid var(--line-2); }
+  .hero { display: flex; align-items: baseline; gap: 6mm; padding-bottom: 3.6mm; border-bottom: 1px solid var(--line-2); }
   .hero h1 {
     font-family: "Play", sans-serif;
     font-weight: 700;
@@ -91,7 +91,7 @@
   .hero p { font-size: 10pt; line-height: 1.5; color: var(--ink-60); max-width: 96mm; }
 
   /* ---- Sections ---- */
-  .sections { padding-top: 5mm; display: flex; flex-direction: column; gap: 4mm; }
+  .sections { padding-top: 3.6mm; display: flex; flex-direction: column; gap: 2.8mm; }
   .section { display: grid; grid-template-columns: 9mm 1fr; gap: 4.5mm; }
   .section .num {
     font-family: "Play", sans-serif;
@@ -106,20 +106,20 @@
     font-weight: 700;
     font-size: 12pt;
     letter-spacing: 0.01em;
-    margin-bottom: 1.6mm;
+    margin-bottom: 1.2mm;
   }
-  .section p { font-size: 9.4pt; line-height: 1.55; color: var(--ink-60); }
+  .section p { font-size: 9.4pt; line-height: 1.45; color: var(--ink-60); }
   .section p strong { color: var(--ink); font-weight: 600; }
   .section p + p { margin-top: 1.6mm; }
 
   /* The workflow spine: three stages, never four. Compound sits beneath it as
      a layer across the workflow, styled provisional because it is roadmap. */
-  .flow { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2.4mm; margin-top: 2.4mm; }
+  .flow { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2.4mm; margin-top: 2mm; }
   .step {
     background: var(--tint);
     border: 1px solid var(--line-2);
     border-radius: 2.5mm;
-    padding: 2.2mm 2.8mm 2.4mm;
+    padding: 2mm 2.8mm 2.2mm;
   }
   .step .stage {
     display: block;
@@ -133,11 +133,11 @@
   }
   .step small { font-size: 8.2pt; line-height: 1.45; color: var(--ink-60); display: block; }
   .compound {
-    margin-top: 2.4mm;
+    margin-top: 2mm;
     background: var(--sage-tint);
     border: 1px dashed var(--olive);
     border-radius: 2.5mm;
-    padding: 2.2mm 2.8mm 2.4mm;
+    padding: 2mm 2.8mm 2.2mm;
   }
   .compound .stage {
     font-family: "JetBrains Mono", monospace;
@@ -149,26 +149,26 @@
     margin-right: 1.6mm;
   }
   .compound small { font-size: 8.2pt; line-height: 1.45; color: var(--ink-60); }
-  .fn { font-size: 7.6pt; color: var(--ink-40); margin-top: 1.4mm; }
+  .fn { font-size: 7.6pt; color: var(--ink-40); margin-top: 1.2mm; }
 
   /* ---- Bottom row ---- */
-  .bottom { display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 5mm; margin-top: 4.4mm; }
+  .bottom { display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 5mm; margin-top: 3mm; }
 
   .questions {
     background: var(--sage-tint);
     border-radius: 4mm;
-    padding: 4.6mm 5.4mm 4.8mm;
+    padding: 4.2mm 5mm 4.4mm;
   }
   .questions .mono, .next .mono { font-size: 7.4pt; color: var(--ink-40); display: block; margin-bottom: 2.6mm; }
-  .questions ol { list-style: none; display: flex; flex-direction: column; gap: 2.2mm; }
-  .questions li { display: grid; grid-template-columns: 6.5mm 1fr; gap: 2mm; font-size: 9pt; line-height: 1.45; color: var(--ink); }
+  .questions ol { list-style: none; display: flex; flex-direction: column; gap: 1.8mm; }
+  .questions li { display: grid; grid-template-columns: 6.5mm 1fr; gap: 2mm; font-size: 9pt; line-height: 1.4; color: var(--ink); }
   .questions li .qn { font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 8pt; color: var(--olive); padding-top: 0.3mm; }
 
   .next {
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: 4mm;
-    padding: 4.6mm 5.4mm 4.8mm;
+    padding: 4.2mm 5mm 4.4mm;
     display: flex;
     flex-direction: column;
   }
@@ -180,7 +180,7 @@
   /* ---- Footer ---- */
   .footer {
     margin-top: auto;
-    padding: 3.6mm 14mm 6mm;
+    padding: 2.6mm 14mm 4.4mm;
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -193,7 +193,7 @@
 
 <header class="band">
   <img src="../assets/logo/tacedge-lockup-cream.svg" alt="TACEDGE">
-  <span class="mono">Fulton Hogan &middot; 30 July 2026</span>
+  <span class="mono">Prepared for Amanda Lawrey &middot; Fulton Hogan &middot; 30 July 2026</span>
 </header>
 
 <main class="page">
@@ -215,7 +215,7 @@
       <span class="num">02</span>
       <div>
         <h2>What we have built</h2>
-        <p>TACEDGE Ground Engineering runs the delivery workflow for anchoring and drilling. It is <strong>in production with crews in New Zealand and Samoa today</strong>. Our ambition is a world-class ground engineering delivery product built on one operational habit: the field is the source of truth.</p>
+        <p>TACEDGE Ground Engineering runs the delivery workflow for anchoring and drilling. It is <strong>in production with crews in New Zealand and Samoa today</strong>. Our current focus is deliberately narrow: building a world-class ground engineering delivery product around one operational habit. The field is the source of truth. Our wider mission is to make shared clarity the norm for field coordination.</p>
         <div class="flow">
           <div class="step"><span class="stage">Configure</span><small>The job set up right before the crew mobilises.</small></div>
           <div class="step"><span class="stage">Capture</span><small>Field data recorded once, at the point of work.</small></div>
@@ -230,8 +230,8 @@
       <span class="num">03</span>
       <div>
         <h2>What we would like to explore with Fulton Hogan</h2>
-        <p>Under the Integrated Delivery Model a network is delivered by many parties: Fulton Hogan, NZTA, MSQA providers, directory suppliers. The systems you run are excellent at single-party answers. The strain is the shared, multi-party picture, on networks where roughly 40 percent of the country has no cellular coverage and the picture matters most exactly when weather takes the towers down.</p>
-        <p>We want to explore a <strong>thin coordination layer above the systems you already run</strong>, replacing none of them, satellite-enabled through One NZ so it keeps working when terrestrial networks do not. We are not here to pitch a product. We would rather understand how coordination actually strains on your networks, and test whether this is worth building with you.</p>
+        <p>Under the Integrated Delivery Model, a network is delivered by many parties: Fulton Hogan, NZTA, MSQA providers and directory suppliers. The systems supporting each organisation may be strong, but the strain often sits in the shared, multi-party picture, particularly across networks where terrestrial coverage is unavailable, degraded or disrupted.</p>
+        <p>Our working hypothesis is that there may be value in a <strong>thin coordination layer above the systems you already run</strong>, replacing none of them, and enabled through One NZ so the shared picture remains available when terrestrial connectivity is unavailable or degraded. We are not here to pitch a predetermined product. We would rather understand how coordination actually strains across your networks and test whether there is something worth building together.</p>
       </div>
     </section>
   </div>
@@ -240,10 +240,10 @@
     <div class="questions">
       <span class="mono">The questions we are bringing</span>
       <ol>
-        <li><span class="qn">01</span><span>Where does multi-party coordination strain hardest under IDM mobilisation? What does a bad day look like operationally?</span></li>
-        <li><span class="qn">02</span><span>In the last significant storm response, how was the operational picture actually assembled?</span></li>
-        <li><span class="qn">03</span><span>How does NZTA get visibility of network status and response progress during an event today?</span></li>
-        <li><span class="qn">04</span><span>Where does connectivity bite hardest, and on which network would satellite change the answer?</span></li>
+        <li><span class="qn">01</span><span>As persistent connectivity becomes available across more of the network, how do you see field coordination changing at Fulton Hogan?</span></li>
+        <li><span class="qn">02</span><span>Where does multi-party coordination strain hardest under the Integrated Delivery Model? What does a bad day look like operationally?</span></li>
+        <li><span class="qn">03</span><span>During the last significant event or storm response, how was the operational picture actually assembled and shared with NZTA?</span></li>
+        <li><span class="qn">04</span><span>Where does connectivity currently constrain the operation most, and is there a particular network or workflow where satellite enablement could materially change the answer?</span></li>
       </ol>
     </div>
 
